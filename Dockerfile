@@ -12,7 +12,8 @@ RUN apt-get -y update \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd $USER \
     && mkdir $STEAMCMD_DIR \
-    && chown $USER:$USER $STEAMCMD_DIR 
+    && chown $USER:$USER $STEAMCMD_DIR \
+	&& mkdir $SERVER_DIR
 	
 RUN chown -R $USER:$USER $STEAMCMD_DIR
 
