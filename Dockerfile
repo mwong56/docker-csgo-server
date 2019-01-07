@@ -1,14 +1,22 @@
 FROM ubuntu:16.04
 MAINTAINER Nicholas Asimov <nicholas@asimov.me>
 
-RUN apt-get -y update \
-    && apt-get -y upgrade \
-    && apt-get -y install lib32gcc1 net-tools curl unzip \
-    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
+ENV USER csgo
 ENV STEAMCMD_DIR /steamcmd
 ENV SERVER_DIR $STEAMCMD_DIR/csgoserver
 ENV SOURCEMOD_PLUGINS_DIR $SERVER_DIR/csgo/addons/sourcemod/plugins
+
+RUN apt-get -y update \
+    && apt-get -y upgrade \
+    && apt-get -y install lib32gcc1 curl net-tools lib32stdc++6 \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && useradd $USER \
+    && mkdir $STEAMCMD_DIR \
+    && chown $USER:$USER $STEAMCMD_DIR 
+	
+RUN chown -R $USER:$USER $STEAMCMD_DIR
+
+USER $USER
 
 # Install SteamCMD
 RUN mkdir -p $STEAMCMD_DIR
