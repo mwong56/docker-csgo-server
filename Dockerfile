@@ -37,7 +37,7 @@ RUN curl -fsSL https://github.com/splewis/csgo-retakes/releases/download/v0.3.4/
 
 #2.1 Additional retake plugins
 RUN echo "Enabling additional retake plugins" \
-    && mv $SOURCEMOD_PLUGINS_DIR/disabled/retakes_standardallocator.sp $SOURCEMOD_PLUGINS_DIR
+    && mv $SOURCEMOD_PLUGINS_DIR/disabled/retakes_standardallocator.smx $SOURCEMOD_PLUGINS_DIR
 
 # 2. PugSetup
 # RUN curl -fsSL https://github.com/splewis/csgo-pug-setup/releases/download/2.0.2/pugsetup_2.0.2.zip -o pugsetup.zip \
